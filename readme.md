@@ -1,6 +1,6 @@
 # DizzyData API Client
 
-This is an unofficial nodejs client for Dizzydata. The package is still under development and the exposed methods will most likely change before the first release. 
+This is an unofficial nodejs client for the Dizzydata API. The package is still under development and the exposed methods will most likely change before the first release. 
 
 ## Installation
 
