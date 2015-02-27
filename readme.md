@@ -24,7 +24,6 @@ module.exports = {
     test: {
     	CLIENT_ID: '<YOUR CLIENT ID>'
     }
-}
 };
 ```
 
