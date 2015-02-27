@@ -1,13 +1,10 @@
-if (!process.env.NODE_ENV) { process.env.NODE_ENV = 'test'; }
-var config = require('ezconf');
-
 var chai = require('chai');
 chai.config.includeStack = true;
 var expect = chai.expect;
+var config = require('ezconf');
+var DizzydataApiClient = require('../lib/client');
 
-var DizzydataApiClient = require('../lib/dizzydata-api-client');
-
-describe('DizzyData', function() {
+describe('Dizzydata', function() {
 
 	this.timeout(60000);
 
@@ -81,8 +78,9 @@ describe('DizzyData', function() {
 			}).then(function() {
 				expect(true).to.be.false;
 			}, function(error) {
-				expect(error).to.be.an.object;
-				expect(error.body.StatusCode).to.equal(401);
+				expect(error).to.be.an('object').that.has.property('body')
+					.that.is.an('object').that.has.property('StatusCode')
+						.that.equals(401);
 			}).then(done, done);
 		});
 
@@ -127,11 +125,11 @@ describe('DizzyData', function() {
 
 		it('should update a client', function(done) {
 			dizzydata.updateClient({
-				id: 533,
+				id: config.test.CLIENT_ID,
 				active: true
 			}).then(function(response) {
-				expect(response).to.be.an.object;
-				expect(response.StatusCode).to.equal(200);
+				expect(response).to.be.an('object')
+					.that.has.property('StatusCode').that.equals(200);
 			}, function(error) {
 				expect(error).to.be.null;
 			}).then(done, done);
@@ -147,12 +145,13 @@ describe('DizzyData', function() {
 				expect(response).to.be.an('array').with.length.above(0);
 				response.forEach(function(statistic) {
 					expect(statistic).to.have.property('clientId').that.is.a('number');
-
 					expect(statistic).to.have.property('perDays').that.is.an('array');
 					var dailyMaximum = 0, dailyTotal = 0;
 					statistic.perDays.forEach(function(perDay) {
-						expect(perDay).to.have.property('date').that.is.a('date');
-						expect(perDay).to.have.property('count').that.is.a('number');
+						expect(perDay).to.be.an('object')
+							.that.has.property('date').that.is.a('date');
+						expect(perDay).to.be.an('object')
+							.that.has.property('count').that.is.a('number');
 						dailyTotal += perDay.count;
 						if (dailyMaximum < perDay.count) { dailyMaximum = perDay.count; }
 					});
@@ -178,7 +177,7 @@ describe('DizzyData', function() {
 
 		it('should return the number of invoices processed for a single client', function(done) {
 			dizzydata.invoiceCount({
-				clientId: 20,
+				clientId: config.test.CLIENT_ID,
 				startDate: new Date('2014-01-01'),
 				endDate: new Date('2015-01-01')
 			}).then(function(response) {
@@ -202,8 +201,10 @@ describe('DizzyData', function() {
 					expect(statistic).to.have.property('perDays').that.is.an('array');
 					var dailyMaximum = 0, dailyTotal = 0;
 					statistic.perDays.forEach(function(perDay) {
-						expect(perDay).to.have.property('date').that.is.a('date');
-						expect(perDay).to.have.property('count').that.is.a('number');
+						expect(perDay).to.be.an('object')
+							.that.has.property('date').that.is.a('date');
+						expect(perDay).to.be.an('object')
+							.that.has.property('count').that.is.a('number');
 						dailyTotal += perDay.count;
 						if (dailyMaximum < perDay.count) { dailyMaximum = perDay.count; }
 					});
@@ -221,7 +222,7 @@ describe('DizzyData', function() {
 
 		it('should return the number of administrations processed for a single client', function(done) {
 			dizzydata.administrationCount({
-				clientId: 20,
+				clientId: config.test.CLIENT_ID,
 				startDate: new Date('2014-01-01'),
 				endDate: new Date('2015-01-01')
 			}).then(function(response) {

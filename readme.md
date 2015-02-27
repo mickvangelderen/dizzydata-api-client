@@ -1,11 +1,11 @@
-# DizzyData API Client
+# Dizzydata API Client
 
-This is an unofficial nodejs client for the Dizzydata API. The package is still under development and the exposed methods will most likely change before the first release. 
+*Warning* This package is still under development and the exposed methods are likely to change. 
 
 ## Installation
 
 ```bash
-npm install --save dizzydata-api-client
+npm install --save dizzydata
 ```
 
 ## Testing
@@ -20,7 +20,11 @@ module.exports = {
         URL: 'https://api.dizzydata.com/',
         USERNAME: '<YOUR USERNAME>',
         PASSWORD: '<YOUR PASSWORD>'
+    },
+    test: {
+    	CLIENT_ID: '<YOUR CLIENT ID>'
     }
+}
 };
 ```
 
@@ -33,5 +37,5 @@ npm install -g mocha
 Then execute mocha with your favorite options or just do:
 
 ```bash
-npm test
+clear && NODE_ENV=test npm test
 ```

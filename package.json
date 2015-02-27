@@ -1,28 +1,29 @@
 {
-  "name": "dizzydata-api-client",
-  "version": "0.1.1",
-  "description": "DizzyData API client",
-  "main": "lib/dizzydata-api-client.js",
+  "name": "dizzydata",
+  "version": "0.2.2",
+  "description": "Dizzydata API client for Node.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec --bail"
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:newviews/dizzydata-api-client.git"
+    "url": "https://github.com/mickvangelderen/dizzydata-api-client-node.git"
   },
   "keywords": [
-    "DizzyData",
-    "API"
+    "Dizzydata",
+    "API",
+    "client"
   ],
   "author": "Mick van Gelderen",
   "license": "ISC",
   "dependencies": {
-    "es6-promise": "^2.0.0",
-    "qs": "^2.3.2",
-    "request": "^2.48.0"
+    "es6-promises": "^1.0.10",
+    "qs": "^2.3.3",
+    "request": "^2.53.0"
   },
   "devDependencies": {
-    "chai": "^1.10.0",
+    "chai": "^2.1.0",
     "ezconf": "0.0.0"
   }
 }
