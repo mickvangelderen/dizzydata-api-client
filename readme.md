@@ -38,3 +38,12 @@ Then execute mocha with your favorite options or just do:
 ```bash
 clear && NODE_ENV=test npm test
 ```
+
+## Changelog
+
+### 0.2.2 -> 0.3.1
+The request wrapper was split from the lib/client.js to its own file. This caused some properties on the client to be located. 
+* The properties `username`, `password`, `baseUrl`, `token` and `responseToJSON` are no longer available on the client objects. 
+* The function `_request(options)` is now available through `request(options)`
+* The function `_authorizedRequest(options)` is now available through `request.authorized(options)`
+* The function `_requestToken()` is now available through `request._token()` but should for normal use not be called by you. 

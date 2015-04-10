@@ -1,10 +1,7 @@
-var chai = require('chai');
-chai.config.includeStack = true;
-var expect = chai.expect;
-
+var expect = require('./expect');
 var dizzydataDate = require('../lib/dizzydata-date');
 
-describe('dizzydata-date.js', function() {
+describe('lib/dizzydata-date.js', function() {
 
 	describe('_pad2', function() {
 		it('should pad a number to two digits with zeros', function() {

@@ -8,6 +8,9 @@ module.exports = {
         URL: 'https://api.dizzydata.com/',
         USERNAME: '<YOUR USERNAME>',
         PASSWORD: '<YOUR PASSWORD>'
+    },
+    test: {
+        CLIENT_ID: '<YOUR CLIENT ID>'
     }
 };
 ```
