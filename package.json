@@ -19,11 +19,11 @@
   "license": "ISC",
   "dependencies": {
     "es6-promises": "^1.0.10",
-    "qs": "^2.3.3",
-    "request": "^2.53.0"
+    "qs": "^2.4.1",
+    "request": "^2.55.0"
   },
   "devDependencies": {
-    "chai": "^2.1.0",
+    "chai": "^2.3.0",
     "ezconf": "0.0.0"
   }
 }
