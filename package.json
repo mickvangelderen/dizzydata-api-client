@@ -1,6 +1,6 @@
 {
   "name": "dizzydata",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Dizzydata API client for Node.js",
   "main": "index.js",
   "scripts": {
