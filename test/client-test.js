@@ -45,8 +45,8 @@ describe('lib/client.js', function() {
 	describe('invoiceCount', function() {
 		it('should return the number of invoices processed', function(done) {
 			dizzydata.invoiceCount({
-				startDate: new Date('2014-01-01'),
-				endDate: new Date('2015-01-01')
+				startDate: new Date('2015-01-01'),
+				endDate: new Date('2015-05-01')
 			}).then(function(response) {
 				expect(response).to.be.an('array').with.length.above(0);
 				response.forEach(function(statistic) {
