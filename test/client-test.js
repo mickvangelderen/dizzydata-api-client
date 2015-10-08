@@ -17,36 +17,33 @@ describe('lib/client.js', function() {
 	});
 
 	describe('clients', function() {
-		it('should return all clients', function(done) {
-			dizzydata.clients().then(function(response) {
+		it('should return all clients', function() {
+			return dizzydata.clients().then(function(response) {
 				expect(response).to.be.an('array').with.length.above(0);
 				response.forEach(function(client) {
 					expect(client).to.have.property('id').that.is.a('number');
 					expect(client).to.have.property('name').that.is.a('string');
 				});
-			}, function(error) {
-				expect(error).to.be.null;
-			}).then(done, done);
+			});
 		});
 
-		it('should update a client', function(done) {
-			dizzydata.updateClient({
+		it('should update a client', function() {
+			return dizzydata.updateClient({
 				id: config.test.CLIENT_ID,
 				active: true
 			}).then(function(response) {
 				expect(response).to.be.an('object')
-					.that.has.property('StatusCode').that.equals(200);
-			}, function(error) {
-				expect(error).to.be.null;
-			}).then(done, done);
+				expect(response).to.have.ownProperty('DevMessage')
+				expect(response.DevMessage).to.equal('clients ' + config.test.CLIENT_ID + ' updated')
+			});
 		});
 	});
 
 	describe('invoiceCount', function() {
-		it('should return the number of invoices processed', function(done) {
-			dizzydata.invoiceCount({
+		it('should return the number of invoices processed', function() {
+			return dizzydata.invoiceCount({
 				startDate: new Date('2015-01-01'),
-				endDate: new Date('2015-05-01')
+				endDate: new Date('2015-10-08')
 			}).then(function(response) {
 				expect(response).to.be.an('array').with.length.above(0);
 				response.forEach(function(statistic) {
@@ -76,27 +73,23 @@ describe('lib/client.js', function() {
 					expect(dailyTotal, 'expect totals to match').to.equal(workflowTotal);
 					expect(statistic).to.have.property('total').that.equals(dailyTotal);
 				});
-			}, function(error) {
-				expect(error).to.be.null;
-			}).then(done, done);
+			});
 		});
 
-		it('should return the number of invoices processed for a single client', function(done) {
-			dizzydata.invoiceCount({
+		it('should return the number of invoices processed for a single client', function() {
+			return dizzydata.invoiceCount({
 				clientId: config.test.CLIENT_ID,
 				startDate: new Date('2014-01-01'),
 				endDate: new Date('2015-01-01')
 			}).then(function(response) {
 				expect(response).to.be.an('array').with.length(1);
-			}, function(error) {
-				expect(error).to.be.null;
-			}).then(done, done);
+			});
 		});
 	});
 
 	describe('administrationCount', function() {
-		it('should return the number of administrations processed', function(done) {
-			dizzydata.administrationCount({
+		it('should return the number of administrations processed', function() {
+			return dizzydata.administrationCount({
 				startDate: new Date('2014-01-01'),
 				endDate: new Date('2015-01-01')
 			}).then(function(response) {
@@ -121,21 +114,17 @@ describe('lib/client.js', function() {
 
 					expect(statistic).to.have.property('total').that.equals(dailyTotal);
 				});
-			}, function(error) {
-				expect(error).to.be.null;
-			}).then(done, done);
+			});
 		});
 
-		it('should return the number of administrations processed for a single client', function(done) {
-			dizzydata.administrationCount({
+		it('should return the number of administrations processed for a single client', function() {
+			return dizzydata.administrationCount({
 				clientId: config.test.CLIENT_ID,
 				startDate: new Date('2014-01-01'),
 				endDate: new Date('2015-01-01')
 			}).then(function(response) {
 				expect(response).to.be.an('array').with.length(1);
-			}, function(error) {
-				expect(error).to.be.null;
-			}).then(done, done);
+			});
 		});
 	});
 });

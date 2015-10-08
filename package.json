@@ -4,7 +4,7 @@
   "description": "Dizzydata API client for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --bail"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,12 +18,12 @@
   "author": "Mick van Gelderen",
   "license": "ISC",
   "dependencies": {
-    "es6-promises": "^1.0.10",
-    "qs": "^2.4.1",
+    "bluebird": "^2.10.2",
+    "qs": "^5.2.0",
     "request": "^2.55.0"
   },
   "devDependencies": {
-    "chai": "^2.3.0",
+    "chai": "^3.3.0",
     "ezconf": "0.0.0"
   }
 }
