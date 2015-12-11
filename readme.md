@@ -8,6 +8,27 @@
 npm install --save dizzydata
 ```
 
+## Usage
+
+```javascript
+var DizzydataClient = require('dizzydata')
+
+var dizzydata = DizzydataClient({
+	server: 'https://api.dizzydata.com/',
+	credentials: {
+		username: '<YOUR USERNAME>',
+		password: '<YOUR PASSWORD>',
+	}
+})
+
+dizzydata.request({ method: 'GET', url: 'v1/jobs' })
+.then(response => {
+	console.log('Received jobs', response.body)
+}, error => {
+	console.error('Failed to load jobs')
+})
+```
+
 ## Testing
 
 You'll need to create a configuration file to run the tests. Some tests might fail for normal user accounts. 
@@ -27,19 +48,22 @@ module.exports = {
 };
 ```
 
-The tests require the mocha package to be installed globally. 
+Run the tests with:
 
 ```bash
-npm install -g mocha
-```
-
-Then execute mocha with your favorite options or just do:
-
-```bash
-clear && NODE_ENV=test npm test
+NODE_ENV=test npm test
 ```
 
 ## Changelog
+
+### 0.4.0 -. 1.0.0
+* The options have changed. `url` became `server`, `username` and `password` are now under the `credentials` property. 
+* `clients(options)`, `updateClients(options)`, `invoiceCount(options)` and `administrationCount(options)` have been removed. They were essentially light wrappers. You can do a better job wrapping Dizzydata requests because you know what information you need and how you want it. 
+* `The old `request.authorized(options)` is now `request(options)`. 
+* `The old `request(options)` is now `unauthorizedRequest(options)`. 
+* `request(options)` now uses authorization by default and attempts to re-authorize automatically using the provided credentials. 
+* Certificates have been removed. Our new certificates work out of the box. 
+* Much simpler implementation. 
 
 ### 0.2.2 -> 0.3.1
 The request wrapper was split from the lib/client.js to its own file. This caused some properties on the client to be located. 
