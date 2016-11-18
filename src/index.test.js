@@ -40,6 +40,15 @@ describe('DizzydataClient', function() {
 			return dizzydata.request({ method: 'GET', url: 'v1/clients' })
 		})
 
+		it('should not fail when multiple requests are fired simultaneously without a token', () => {
+			return Promise.all([
+				dizzydata.request({ method: 'GET', url: 'v1/clients' }),
+				dizzydata.request({ method: 'GET', url: 'v1/steps' }),
+				dizzydata.request({ method: 'GET', url: 'v1/users' }),
+				dizzydata.request({ method: 'GET', url: 'v1/workflows' })
+			])
+		})
+
 	})
 
 })

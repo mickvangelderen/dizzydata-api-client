@@ -1,6 +1,6 @@
-# Config folder for testing
+To run the test suite, put your dizzydata username and password in a config file as illustrated below.
 
-To run the test suite, put your username and password in a config file like the one below
+`config/development-config.js`:
 
 ```javascript
 module.exports = {
@@ -8,9 +8,6 @@ module.exports = {
         URL: 'https://api.dizzydata.com/',
         USERNAME: '<YOUR USERNAME>',
         PASSWORD: '<YOUR PASSWORD>'
-    },
-    test: {
-        CLIENT_ID: '<YOUR CLIENT ID>'
     }
 };
 ```
